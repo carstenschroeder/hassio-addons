@@ -1,0 +1,28 @@
+{
+  "name": "iBrew",
+  "version": "0.0.4",
+  "slug": "ibrew",
+  "description": "Test on iBrew - Experimental stage using default port 2080",
+  "startup": "application",
+  "boot": "auto",
+  "webui": "[PROTO:ssl]://[HOST]:[PORT:2080]",
+  "host_network": true,
+  "map": ["ssl:rw"],
+  "ports": {
+    "2080/tcp": 2080
+  },
+  "options": {
+    "ssl": false,
+    "certfile": "fullchain.pem",
+    "keyfile": "privkey.pem",
+    "packages": [],
+    "init_commands": []
+  },
+  "schema": {
+    "ssl": "bool",
+    "certfile": "str",
+    "keyfile": "str",
+    "packages": ["str"],
+    "init_commands": ["str"]
+  }
+}
