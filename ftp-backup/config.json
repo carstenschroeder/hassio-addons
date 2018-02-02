@@ -1,7 +1,7 @@
 {
   "name": "FTP Backup",
-  "version": "0.2.3",
-  "slug": "ftp-backup",
+  "version": "0.2.4",
+  "slug": "ftpbackup",
   "description": "Creates a backup of the configuration folder config. An archive of the config directory will be stored under backup and also upload the archive on the specified ftp server. The archive will be password protected. Please note that ftp upload is not secure, as the ftp password will be seing in clear text",
   "startup": "before",
   "boot": "auto",
