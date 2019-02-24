@@ -1,6 +1,6 @@
 {
   "name": "Config Rsync",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "slug": "configrsync",
   "description": "synchronizes the config folder with a remote rsync server.",
   "startup": "before",
