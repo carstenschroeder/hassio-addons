@@ -9,7 +9,7 @@ folder=$(jq --raw-output ".folder" $CONFIG_PATH)
 username=$(jq --raw-output ".username" $CONFIG_PATH)
 password=$(jq --raw-output ".password" $CONFIG_PATH)
 
-rsyncurl="$username@$server::$ftpbackupfolder/"
+rsyncurl="$username@$rsyncserver::$folder/"
 hassconfig="/config/"
 
 echo "[Info] trying to rsync $hassconfig to $rsyncurl"
