@@ -3,7 +3,7 @@ FROM $BUILD_FROM
 
 ENV LANG C.UTF-8
 
-RUN apk add --no-cache sshpass rsync
+RUN apk add --no-cache jq sshpass rsync
 
 # Copy data for add-on
 COPY run.sh /
