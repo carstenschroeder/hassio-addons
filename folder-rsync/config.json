@@ -1,7 +1,7 @@
 {
-  "name": "Config Rsync",
-  "version": "0.0.3",
-  "slug": "configrsync",
+  "name": "Folder Rsync",
+  "version": "0.0.4",
+  "slug": "folderrsync",
   "description": "Transfers the Hass.io folders to a remote rsync server.",
   "startup": "before",
   "boot": "auto",

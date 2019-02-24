@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-echo "[Info] Starting FTP Backup docker!"
+echo "[Info] Starting Hass.io folder rsync docker container!"
 
 CONFIG_PATH=/data/options.json
 rsyncserver=$(jq --raw-output ".rsyncserver" $CONFIG_PATH)
