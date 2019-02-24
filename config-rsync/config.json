@@ -1,20 +1,20 @@
 {
   "name": "Config Rsync",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "slug": "configrsync",
-  "description": "synchronizes the config folder with a remote rsync server.",
+  "description": "Transfers the Hass.io folders to a remote rsync server.",
   "startup": "before",
   "boot": "auto",
-  "map": ["config"],
+  "map": ["config", "addons", "backup", "share", "ssl"],
   "options": {
 	  "rsyncserver": "server",
-    "folder": "homeassistant",
+    "rootfolder": "hassio-sync",
     "username": "user",
     "password": "password"
   },
   "schema": {
 	  "rsyncserver": "str",
-    "folder": "str",
+    "rootfolder": "str",
     "username": "str",
     "password": "str"
   }

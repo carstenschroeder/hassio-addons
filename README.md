@@ -19,7 +19,7 @@ https://github.com/carstenschroeder/hassio-addons/
 
 ### [config-rsync]
 
-This simple addon synchronizes the config folder with a remote rsync server.
+This simple addon transfers the Hass.io folders to a remote rsync server.
 
 ### [ftp-backup]
 
