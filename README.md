@@ -12,10 +12,14 @@ pretty easy. Follow https://home-assistant.io/hassio/installing_third_party_addo
 website of Home Assistant, and use the following URL:
 
 ```txt
-https://github.com/leinich/hassio-addons/
+https://github.com/carstenschroeder/hassio-addons/
 ```
 
 ## Add-ons provided by this repository
+
+### [config-rsync]
+
+This simple addon synchronizes the config folder with a remote rsync server.
 
 ### [ftp-backup]
 
@@ -25,8 +29,3 @@ The Archive will be permanently stored under /backup as homeassistant_backup_*.z
 On top of this it will upload the the archive to the specified FTP Server.
 
 Please note that using a FTP Protocol is not secure as the ftp password will be seing in clear text.
-
-### [iBrew]
-
-Experimental using iBrew from  https://github.com/Tristan79/iBrew
-Using default port 2080

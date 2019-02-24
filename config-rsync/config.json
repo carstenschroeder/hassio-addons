@@ -1,0 +1,21 @@
+{
+  "name": "Config Rsync",
+  "version": "0.0.1",
+  "slug": "configrsync",
+  "description": "synchronizes the config folder with a remote rsync server.",
+  "startup": "before",
+  "boot": "auto",
+  "map": ["config"],
+  "options": {
+	  "rsyncserver": "server",
+    "folder": "homeassistant",
+    "username": "user",
+    "password": "password"
+  },
+  "schema": {
+	  "rsyncserver": "str",
+    "folder": "str",
+    "username": "str",
+    "password": "str"
+  }
+}
