@@ -21,23 +21,26 @@ RSYNC_PASSWORD=$(jq --raw-output ".rsync_password" $CONFIG_PATH)
 SSH_ID="${HOME}/.ssh/id"
 
 function add-ssh-key {
-    echo "Adding SSH key"
-    mkdir -p ~/.ssh
-    (
-        echo "Host remote"
-        echo "    IdentityFile ${HOME}/.ssh/id"
-        echo "    HostName ${SSH_HOST}"
-        echo "    User ${SSH_USER}"
-        echo "    Port ${SSH_PORT}"
-        echo "    StrictHostKeyChecking no"
-    ) > "${HOME}/.ssh/config"
 
-    while read -r line; do
-        echo "$line" >> ${HOME}/.ssh/id
-    done <<< "$SSH_KEY"
+    if hass.config.true 'ssh_enabled'; then
+        echo "Adding SSH key"
+        mkdir -p ~/.ssh
+        (
+            echo "Host remote"
+            echo "    IdentityFile ${HOME}/.ssh/id"
+            echo "    HostName ${SSH_HOST}"
+            echo "    User ${SSH_USER}"
+            echo "    Port ${SSH_PORT}"
+            echo "    StrictHostKeyChecking no"
+        ) > "${HOME}/.ssh/config"
 
-    chmod 600 "${HOME}/.ssh/config"
-    chmod 600 "${HOME}/.ssh/id"
+        while read -r line; do
+            echo "$line" >> ${HOME}/.ssh/id
+        done <<< "$SSH_KEY"
+
+        chmod 600 "${HOME}/.ssh/config"
+        chmod 600 "${HOME}/.ssh/id"
+    fi    
 }
 
 function copy-backup-to-remote {
