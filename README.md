@@ -39,7 +39,7 @@ You might want to start the transfer with a HASS automation
 
 ### [remote-backup]
 
-This addon is a fork of the great backup addon https://github.com/mr-bjerre/hassio-remote-backup of @mr-bjerre, which creates and manages snapshots and has a SCP function. It is enhanced so that it is lso able to transfer the Hass.io folders /addons, /backup, /config, /share and /ssl to a remote rsync server (e.g. a Synology NAS).
+This addon is a fork of the great backup addon https://github.com/mr-bjerre/hassio-remote-backup of @mr-bjerre, which creates and manages snapshots and has a SCP function. It is enhanced so that it is also able to transfer the Hass.io folders /addons, /backup, /config, /share and /ssl to a remote rsync server (e.g. a Synology NAS).
 The addon transfers the changes to the destination at every start. After the transfer it stops.
 
 You might want to start the transfer with a HASS automation
