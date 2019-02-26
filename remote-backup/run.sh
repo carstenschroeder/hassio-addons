@@ -42,7 +42,7 @@ function add-ssh-key {
 
 function copy-backup-to-remote {
 
-    if hass.config.false 'ssh_enabled'; then
+    if hass.config.true 'ssh_enabled'; then
         cd /backup/
         if [[ -z $ZIP_PASSWORD  ]]; then
             echo "Copying ${slug}.tar to ${REMOTE_DIRECTORY} on ${SSH_HOST} using SCP"
@@ -88,7 +88,7 @@ function create-local-backup {
 
 function rsync_folders {
 
-    if hass.config.false 'rsync_enabled'; then
+    if hass.config.true 'rsync_enabled'; then
         rsyncurl="$RSYNC_USER@$RSYNC_HOST::$RSYNC_ROOTFOLDER"
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
          sshpass -p $RSYNC_PASSWORD rsync -av /config/ $rsyncurl/config/ 
@@ -104,6 +104,7 @@ function rsync_folders {
 add-ssh-key
 create-local-backup
 copy-backup-to-remote
+rsync_folders
 delete-local-backup
 
 echo "Backup process done!"
