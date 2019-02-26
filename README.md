@@ -45,7 +45,7 @@ The addon transfers the changes to the destination at every start. After the tra
 You might want to start the transfer with a HASS automation
 ```
 - id: '7'
-  alias: Folder sync to NAS
+  alias: Create snapshot & Folder sync to NAS
   trigger:
     platform: time
     at: '1:00:00'
