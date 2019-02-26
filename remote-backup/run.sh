@@ -3,6 +3,8 @@ set -e
 
 CONFIG_PATH=/data/options.json
 
+source /usr/lib/hassio-addons/base.sh
+
 # parse inputs from options
 SSH_HOST=$(jq --raw-output ".ssh_host" $CONFIG_PATH)
 SSH_PORT=$(jq --raw-output ".ssh_port" $CONFIG_PATH)
