@@ -3,9 +3,8 @@ set -e
 
 CONFIG_PATH=/data/options.json
 
-source /usr/lib/hassio-addons/base.sh
-
 # parse inputs from options
+SSH_ENABLED=$(jq --raw-output ".ssh_enabled" $CONFIG_PATH)
 SSH_HOST=$(jq --raw-output ".ssh_host" $CONFIG_PATH)
 SSH_PORT=$(jq --raw-output ".ssh_port" $CONFIG_PATH)
 SSH_USER=$(jq --raw-output ".ssh_user" $CONFIG_PATH)
@@ -14,17 +13,20 @@ REMOTE_DIRECTORY=$(jq --raw-output ".remote_directory" $CONFIG_PATH)
 ZIP_PASSWORD=$(jq --raw-output '.zip_password' $CONFIG_PATH)
 KEEP_LOCAL_BACKUP=$(jq --raw-output '.keep_local_backup' $CONFIG_PATH)
 
+RSYNC_ENABLED=$(jq --raw-output ".rsync_enabled" $CONFIG_PATH)
 RSYNC_HOST=$(jq --raw-output ".rsync_host" $CONFIG_PATH)
 RSYNC_ROOTFOLDER=$(jq --raw-output ".rsync_rootfolder" $CONFIG_PATH)
 RSYNC_USER=$(jq --raw-output ".rsync_user" $CONFIG_PATH)
 RSYNC_PASSWORD=$(jq --raw-output ".rsync_password" $CONFIG_PATH)
+
+echo "$RSYNC_ENABLED"
 
 # create variables
 SSH_ID="${HOME}/.ssh/id"
 
 function add-ssh-key {
 
-    if hass.config.true 'ssh_enabled'; then
+    if [ "$SSH_ENABLED" = true ] ; then
         echo "Adding SSH key"
         mkdir -p ~/.ssh
         (
@@ -47,7 +49,7 @@ function add-ssh-key {
 
 function copy-backup-to-remote {
 
-    if hass.config.true 'ssh_enabled'; then
+    if [ "$SSH_ENABLED" = true ] ; then
         cd /backup/
         if [[ -z $ZIP_PASSWORD  ]]; then
             echo "Copying ${slug}.tar to ${REMOTE_DIRECTORY} on ${SSH_HOST} using SCP"
@@ -93,7 +95,7 @@ function create-local-backup {
 
 function rsync_folders {
 
-    if hass.config.true 'rsync_enabled'; then
+    if [ "$RSYNC_ENABLED" = true ] ; then
         rsyncurl="$RSYNC_USER@$RSYNC_HOST::$RSYNC_ROOTFOLDER"
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
          sshpass -p $RSYNC_PASSWORD rsync -av /config/ $rsyncurl/config/ 
