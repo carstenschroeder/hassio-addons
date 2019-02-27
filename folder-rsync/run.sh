@@ -12,7 +12,7 @@ username=$(jq --raw-output ".username" $CONFIG_PATH)
 #password=$(jq --raw-output ".password" $CONFIG_PATH)
 
 rsyncurl="$username@$rsyncserver::$rootfolder"
-password=="$(hass.config.get '.password')"
+password=="$(hass.config.get "password")"
 
 echo "[Info] trying to rsync hassio folders to $rsyncurl"
  sshpass -p $password rsync -av /config/ $rsyncurl/config/ 
