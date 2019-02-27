@@ -93,7 +93,8 @@ function create-local-backup {
 
 function rsync_folders {
 
-    if [ "$RSYNC_ENABLED" = true ] ; then
+#    if [ "$RSYNC_ENABLED" = true ] ; then
+    if hass.config.true 'rsync_enabled'; then 
         rsyncurl="$RSYNC_USER@$RSYNC_HOST::$RSYNC_ROOTFOLDER"
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
         echo ""
