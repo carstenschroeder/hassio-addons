@@ -1,8 +1,6 @@
 #!/bin/bash
 set -e
 
-source /usr/lib/hassio-addons/base.sh
-
 CONFIG_PATH=/data/options.json
 
 # parse inputs from options
@@ -95,8 +93,7 @@ function create-local-backup {
 
 function rsync_folders {
 
-#    if [ "$RSYNC_ENABLED" = true ] ; then
-    if hass.config.true 'rsync_enabled'; then 
+    if [ "$RSYNC_ENABLED" = true ] ; then
         rsyncurl="$RSYNC_USER@$RSYNC_HOST::$RSYNC_ROOTFOLDER"
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
         echo ""
