@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+source /usr/lib/hassio-addons/base.sh
+
 CONFIG_PATH=/data/options.json
 
 # parse inputs from options
