@@ -1,11 +1,18 @@
 {
   "name": "Folder Rsync",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "slug": "folderrsync",
   "description": "Transfers the Hass.io folders to a remote rsync server.",
   "url" : "https://github.com/carstenschroeder/hassio-addons/blob/master/README.md",
-  "startup": "before",
-  "boot": "auto",
+  "startup": "once",
+  "boot": "manual",
+  "arch": [
+    "aarch64",
+    "amd64",
+    "armhf",
+    "armv7",
+    "i386"
+  ],
   "map": ["config", "addons", "backup", "share", "ssl"],
   "options": {
 	  "rsyncserver": "server",
