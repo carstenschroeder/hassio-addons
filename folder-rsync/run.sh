@@ -14,7 +14,7 @@ rsyncurl="$username@$rsyncserver::$rootfolder"
 echo "[Info] trying to rsync hassio folders to $rsyncurl"
 echo ""
 echo "[Info] /config"
- sshpass -p $password rsync -av /config/ $rsyncurl/config/ 
+ sshpass -p $password rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/ 
 echo ""
 echo "[Info] /addons"
  sshpass -p $password rsync -av /addons/ $rsyncurl/addons/ 
