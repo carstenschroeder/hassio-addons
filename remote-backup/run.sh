@@ -98,7 +98,7 @@ function rsync_folders {
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
         echo ""
         echo "[Info] /config"
-         sshpass -p $RSYNC_PASSWORD rsync -av /config/ $rsyncurl/config/ --delete
+         sshpass -p $RSYNC_PASSWORD rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/ --delete
         echo ""
         echo "[Info] /addons"
          sshpass -p $RSYNC_PASSWORD rsync -av /addons/ $rsyncurl/addons/ --delete
