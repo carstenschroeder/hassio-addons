@@ -87,7 +87,7 @@ function delete-local-backup {
 function create-local-backup {
     name="Automated backup $(date +'%Y-%m-%d %H:%M')"
     echo "Creating local backup: \"${name}\""
-    slug=$(hassio snapshots new --name="${name}" | jq --raw-output '.data.slug')
+    slug=$(hassio snapshots new --raw-json --name="${name}" | jq --raw-output '.data.slug')
     echo "Backup created: ${slug}"
 }
 
