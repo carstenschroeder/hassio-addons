@@ -52,5 +52,5 @@ You might want to start the transfer with a HASS automation
   action:
   - service: hassio.addon_start
     data:
-      addon: 954f2f4e_remote_backup
+      addon: 36883ed7_remote_backup
 ```
