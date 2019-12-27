@@ -49,14 +49,8 @@ function copy-backup-to-remote {
 
     if [ "$SSH_ENABLED" = true ] ; then
         cd /backup/
-        if [[ -z $ZIP_PASSWORD  ]]; then
-            echo "Copying ${slug}.tar to ${REMOTE_DIRECTORY} on ${SSH_HOST} using SCP"
-            scp -F "${HOME}/.ssh/config" "${slug}.tar" remote:"${REMOTE_DIRECTORY}"
-        else
-            echo "Copying password-protected ${slug}.zip to ${REMOTE_DIRECTORY} on ${SSH_HOST} using SCP"
-            zip -P "$ZIP_PASSWORD" "${slug}.zip" "${slug}".tar
-            scp -F "${HOME}/.ssh/config" "${slug}.zip" remote:"${REMOTE_DIRECTORY}" && rm "${slug}.zip"
-        fi
+        echo "Copying ${slug}.tar to ${REMOTE_DIRECTORY} on ${SSH_HOST} using SCP"
+        scp -F "${HOME}/.ssh/config" "${slug}.tar" remote:"${REMOTE_DIRECTORY}"
     fi
 }
 
@@ -68,7 +62,7 @@ function delete-local-backup {
         :
     elif [[ -z ${KEEP_LOCAL_BACKUP} ]]; then
         echo "Deleting local backup: ${slug}"
-        hassio snapshots remove "${slug}"
+        hassio snapshots remove --name "${slug}"
     else
 
         last_date_to_keep=$(hassio snapshots list --raw-json | jq .data.snapshots[].date | sort -r | \
@@ -77,7 +71,7 @@ function delete-local-backup {
         hassio snapshots list --raw-json | jq -c .data.snapshots[] | while read backup; do
             if [[ $(echo ${backup} | jq .date | xargs date -D "%Y-%m-%dT%T" +%s --date ) -lt ${last_date_to_keep} ]]; then
                 echo "Deleting local backup: $(echo ${backup} | jq -r .slug)"
-                hassio snapshots remove "$(echo ${backup} | jq -r .slug)"
+                hassio snapshots remove --name "$(echo ${backup} | jq -r .slug)"
             fi
         done
 
@@ -87,7 +81,11 @@ function delete-local-backup {
 function create-local-backup {
     name="Automated backup $(date +'%Y-%m-%d %H:%M')"
     echo "Creating local backup: \"${name}\""
-    slug=$(hassio snapshots new --raw-json --name="${name}" | jq --raw-output '.data.slug')
+    if [[ -z $ZIP_PASSWORD  ]]; then
+        slug=$(hassio snapshots new --raw-json --name="${name}" --no-progress | jq --raw-output '.data.slug')
+    else
+        slug=$(hassio snapshots new --raw-json --name="${name}" --password="${ZIP_PASSWORD}" --no-progress | jq --raw-output '.data.slug')
+    fi
     echo "Backup created: ${slug}"
 }
 
