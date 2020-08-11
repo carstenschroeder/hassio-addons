@@ -36,10 +36,6 @@ function add-ssh-key {
             echo "    StrictHostKeyChecking no"
         ) > "${HOME}/.ssh/config"
 
-        # while read -r line; do
-        #     echo "$line" >> ${HOME}/.ssh/id
-        # done <<< "$SSH_KEY"
-
         chmod 600 "${HOME}/.ssh/config"
         chmod 600 "${HOME}/.ssh/id"
     fi    
