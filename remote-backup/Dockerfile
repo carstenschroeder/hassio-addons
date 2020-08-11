@@ -1,23 +1,23 @@
 ARG BUILD_FROM
-FROM $BUILD_FROM
+FROM ${BUILD_FROM}
+
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # Add env
 ENV LANG C.UTF-8
 
 # Setup base
-RUN apk add --no-cache jq openssh-client zip sshpass rsync
+RUN apk add --no-cache jq openssh-client zip sshpass rsync wget
 
 # Hass.io CLI
 ARG BUILD_ARCH
 ARG CLI_VERSION
-RUN apk add --no-cache curl \
-    && curl -Lso /usr/bin/hassio https://github.com/home-assistant/hassio-cli/releases/download/2.2.0/hassio_${BUILD_ARCH} \
-    && chmod a+x /usr/bin/hassio
+RUN wget -O /usr/bin/ha "https://github.com/home-assistant/cli/releases/download/4.3.0/ha_${BUILD_ARCH}" \
+    && chmod a+x /usr/bin/ha
 
 # Copy data
 COPY run.sh /
-RUN chmod a+x /run.sh
-
+RUN chmod a+x run.sh
 CMD [ "/run.sh" ]
 
 # Build arugments
