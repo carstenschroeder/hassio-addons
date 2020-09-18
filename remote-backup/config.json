@@ -1,6 +1,6 @@
 {
   "name": "Remote Backup",
-  "version": "4.2.6",
+  "version": "4.2.7",
   "slug": "remote_backup",
   "description": "Exploit snapshots and SCP/rsync to create remote backups to specified server",
   "url": "https://github.com/carstenschroeder/hassio-addons/blob/master/README.md",
@@ -15,7 +15,7 @@
   ],
   "hassio_api": true,
   "hassio_role": "backup",
-  "map": ["config", "addons", "share", "ssl", "backup:rw"],
+  "map": ["config", "addons", "share", "ssl", "backup:rw", "media"],
   "options": {
     "ssh_enabled": true,
     "ssh_host": "",
