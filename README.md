@@ -21,7 +21,7 @@ https://github.com/carstenschroeder/hassio-addons/
 
 ### [folder-rsync]
 
-This simple addon transfers the Hass.io folders /addons, /backup, /config, /share and /ssl to a remote rsync server (e.g. a Synology NAS).
+This simple addon transfers the Hass.io folders /addons, /backup, /config, /share, /ssl and /media to a remote rsync server (e.g. a Synology NAS).
 The addon transfers the changes to the destination at every start. After the transfer it stops.
 
 You might want to start the transfer with a HASS automation
