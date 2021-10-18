@@ -98,24 +98,24 @@ function rsync_folders {
         echo "[Info] trying to rsync hassio folders to $rsyncurl"
         echo ""
         echo "[Info] /config"
-        sshpass -p $RSYNC_PASSWORD rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/ --delete
+        printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/ --delete
         echo ""
         echo "[Info] /addons"
-        sshpass -p $RSYNC_PASSWORD rsync -av /addons/ $rsyncurl/addons/ --delete
+        printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av /addons/ $rsyncurl/addons/ --delete
         echo ""
         echo "[Info] /backup"
-        sshpass -p $RSYNC_PASSWORD rsync -av /backup/ $rsyncurl/backup/ --delete
+        printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av /backup/ $rsyncurl/backup/ --delete
         echo ""
         echo "[Info] /share"
-        sshpass -p $RSYNC_PASSWORD rsync -av /share/ $rsyncurl/share/ --delete
+        printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av /share/ $rsyncurl/share/ --delete
         echo ""
         echo "[Info] /ssl"
-        sshpass -p $RSYNC_PASSWORD rsync -av /ssl/ $rsyncurl/ssl/ --delete
+        printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av /ssl/ $rsyncurl/ssl/ --delete
         echo "[Info] Finished rsync"
         if [ -d "/media" ]; then
          echo ""
          echo "[Info] /media"
-         sshpass -p $RSYNC_PASSWORD rsync -av /media/ $rsyncurl/media/ --delete
+         printf %s "$RSYNC_PASSWORD" | sshpass -d0 rsync -av /media/ $rsyncurl/media/ --delete
         else 
          echo ""
          echo "[Info] /media not existing"

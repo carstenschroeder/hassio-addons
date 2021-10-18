@@ -14,23 +14,23 @@ rsyncurl="$username@$rsyncserver::$rootfolder"
 echo "[Info] trying to rsync hassio folders to $rsyncurl"
 echo ""
 echo "[Info] /config"
-sshpass -p $password rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/ 
+printf %s "$password" | sshpass -d0 rsync -av --exclude '*.db-shm' --exclude '*.db-wal' /config/ $rsyncurl/config/
 echo ""
 echo "[Info] /addons"
-sshpass -p $password rsync -av /addons/ $rsyncurl/addons/ 
+printf %s "$password" | sshpass -d0 rsync -av /addons/ $rsyncurl/addons/
 echo ""
 echo "[Info] /backup"
-sshpass -p $password rsync -av /backup/ $rsyncurl/backup/ 
+printf %s "$password" | sshpass -d0 rsync -av /backup/ $rsyncurl/backup/
 echo ""
 echo "[Info] /share"
-sshpass -p $password rsync -av /share/ $rsyncurl/share/ 
+printf %s "$password" | sshpass -d0 rsync -av /share/ $rsyncurl/share/
 echo ""
 echo "[Info] /ssl"
-sshpass -p $password rsync -av /ssl/ $rsyncurl/ssl/ 
+printf %s "$password" | sshpass -d0 rsync -av /ssl/ $rsyncurl/ssl/
 if [ -d "/media" ]; then
  echo ""
  echo "[Info] /media"
- sshpass -p $password rsync -av /media/ $rsyncurl/media/
+ printf %s "$password" | sshpass -d0 rsync -av /media/ $rsyncurl/media/
 else 
  echo ""
  echo "[Info] /media not existing"
