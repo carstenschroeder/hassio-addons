@@ -1,5 +1,6 @@
 ARG BUILD_FROM
-FROM $BUILD_FROM
+# FROM $BUILD_FROM
+FROM hassioaddons/base:8.0.6
 
 ENV LANG C.UTF-8
 
