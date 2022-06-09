@@ -6,6 +6,7 @@
   "url" : "https://github.com/carstenschroeder/hassio-addons/blob/master/README.md",
   "startup": "once",
   "boot": "manual",
+  "init": false,
   "arch": [
     "aarch64",
     "amd64",
